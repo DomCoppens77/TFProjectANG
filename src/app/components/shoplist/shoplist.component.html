@@ -1,0 +1,9 @@
+<h3>Shop(s) List</h3>
+<nb-list>
+    <nb-list-item *ngFor="let item of listeShop.results; let i = index">
+               <a [routerLink]="['/details', item.id]">{{item.name}}</a>  &nbsp;
+        
+            <!-- <button nbButton status="warning" (click)="update(item.Id)">Modifier</button> &nbsp;
+            <button nbButton status="danger" (click)="delete(item.Id, item.Nom)">X</button> -->
+    </nb-list-item>
+</nb-list>

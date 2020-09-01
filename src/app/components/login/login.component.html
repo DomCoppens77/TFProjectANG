@@ -1,0 +1,13 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+    <TABLE>
+        <TR>
+        <TD ALIGN=RIGHT>Email</TD>
+        <TD><input nbInput formControlName="Email"></TD>
+        </TR>
+        <TR>
+            <TD ALIGN=RIGHT>Password</TD>
+            <TD><input nbInput formControlName="Passwd" Type="password"></TD>
+            </TR>
+    </TABLE>
+    <button nbButton type="submit" [disabled]="fg.invalid">Log In</button>
+</form>
