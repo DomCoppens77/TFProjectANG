@@ -1,0 +1,50 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header class="headerdfooteretail">
+        <H4>
+            <nb-icon icon="compass-outline" status="warning"></nb-icon>
+            {{model.results[0].name}} &nbsp; &nbsp; 
+
+            <button *ngIf="admin" nbButton status="warning" (click)="update(model.results[0].id)" title="Modify Shop {{model.results[0].id}}">
+                <nb-icon icon="edit-2"></nb-icon>
+            </button>
+
+            <button *ngIf="admin" nbButton status="danger" (click)="delete(model.results[0].id,'country ' + model.results[0].id)" title="Delete Shop {{model.results[0].id}}">
+                <nb-icon icon="trash-2"></nb-icon>
+            </button>   
+            &nbsp;&nbsp;
+            <A *ngIf="model.results[0].localisationURL != ''" href="{{model.results[0].localisationURL}}" TARGET=_BLANK><img class="img-responsive" src="assets/images/local4.png" width=30></A> 
+        </H4>
+    </nb-card-header>
+    <nb-card-body>
+        <TABLE>
+            <TR><TD ALIGN=RIGHT>Address1&nbsp;:&nbsp; </TD> <TD>{{model.results[0].address1}}        </TD></TR>
+            <TR><TD ALIGN=RIGHT>Address2&nbsp;:&nbsp; </TD> <TD>{{model.results[0].address2}}        </TD></TR>
+            <TR><TD ALIGN=RIGHT>ZIP     &nbsp;:&nbsp; </TD> <TD>{{model.results[0].zip}}             </TD></TR>
+            <TR><TD ALIGN=RIGHT>City    &nbsp;:&nbsp; </TD> <TD>{{model.results[0].city}} ({{model.results[0].country}}) </TD></TR>
+            <TR><TD ALIGN=RIGHT>Phone   &nbsp;:&nbsp; </TD> <TD>{{model.results[0].phone}}           </TD></TR>
+            <TR><TD ALIGN=RIGHT>Email   &nbsp;:&nbsp; </TD> <TD>{{model.results[0].email}}           </TD></TR>
+            <TR><TD ALIGN=RIGHT>WebSite &nbsp;:&nbsp; </TD> <TD> 
+                <A href="{{model.results[0].webSite}}" TARGET=_BLANK>{{model.results[0].webSite}}</A>
+            </TD></TR>
+            <TR><TD ALIGN=RIGHT>&nbsp;</TD> <TD>&nbsp;</TD></TR>
+            <TR>
+                <TD ALIGN=RIGHT>Closed &nbsp; : &nbsp; </TD> <TD>
+                    <nb-toggle status={{this.CKStatus}} checked={{CKclosed}} (checkedChange)="toggle($event)" disabled></nb-toggle>
+                </TD>
+            </TR>
+            <TR>
+        </TR>
+    </TABLE>        
+    </nb-card-body>
+<!--     
+    <iframe class="e2e-iframe-trusted-src" width="640" height="390" [src]="safeURL"></iframe> -->
+    <nb-card-footer class="headerdfooteretail">
+        <button nbButton status="info" (click)="back2list()"
+            nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+            <nb-icon icon="corner-down-left"></nb-icon>
+        </button>  
+    </nb-card-footer>
+</nb-card>
+
+
+

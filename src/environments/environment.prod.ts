@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  APIURL : "http://localhost:59006/api",
+  DISCOGSTOKEN : "tJRACJAVbSHuuLpVwpUbupgXosKSWmVflmVnbpbE",
+  
 };

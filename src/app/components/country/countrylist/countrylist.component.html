@@ -1,0 +1,39 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header  class="headerdfooteretail">
+        <TABLE>
+            <thead><TD COLSPAN=2>
+                <h3>
+                    <nb-icon icon="globe-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon> 
+                    Countries List&nbsp;
+                </h3></TD> 
+                <TD>
+                    <button *ngIf="admin" nbButton status="warning" (click)="add()" nbPopover="Add New Country" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                        <nb-icon icon="plus-circle"></nb-icon>
+                    </button>
+                </TD>
+            </thead>
+        </TABLE>        
+    </nb-card-header>
+    <nb-card-body>
+        <TABLE width=100%>
+            <TR  *ngFor="let item of lstCtry.results; let i = index" class="lineGrey">
+                <TD align=center>
+                <img src="https://www.countryflags.io/{{item.iso}}/shiny/64.png" nbPopover="{{item.ctry}} 's Flag" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                </TD>
+                <TD align=center><B>{{item.iso}}</B>  &nbsp; </TD>    
+                <TD>{{item.ctry}}</TD>
+                <TD width=160>
+                    <button nbButton status="info" (click)="goDetail(item.iso)" title="Country Detail  {{item.iso}}">
+                        <nb-icon icon="eye-outline"></nb-icon>
+                    </button> &nbsp;
+                    <button nbButton *ngIf="admin" status="warning" (click)="update(item.iso)" title="Modify country {{item.iso}}">
+                        <nb-icon icon="edit-2"></nb-icon>
+                    </button>&nbsp;
+                    <button nbButton *ngIf="admin" status="danger" (click)="delete(item.iso,'country : ' + item.iso)" title="Delete country {{item.iso}}">
+                        <nb-icon icon="trash-2"></nb-icon>
+                    </button>   
+                </TD>       
+            </TR>  
+        </TABLE>  
+    </nb-card-body>
+</nb-card>

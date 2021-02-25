@@ -1,0 +1,76 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-body>
+
+        <table width=100% border={{this.border}}>
+            <thead>
+                <TD>
+                    <button nbButton status="info" (click)="goBack()"
+                        nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                        <nb-icon icon="corner-down-left"></nb-icon>
+                    </button>
+                </TD>
+            </thead>
+            <thead *ngIf="ListeObj != null && ListeObj.results[0] !=null && ListeObj.results[0].objs !=null">
+                <TD colspan=2><p align=center>Page {{currentpage}} of {{maxpages}}</p></TD>
+            </thead>
+            <thead>
+                <TD width=50% align=right>&nbsp;<button *ngIf="currentpage != 1" nbButton status="info" (click)="goPrev(currentpage - 1)" title="Go {{currentpage - 1}}"
+                    nbPopover="Go {{currentpage - 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="left">
+                    <nb-icon icon="arrowhead-left"></nb-icon>&nbsp;Prev Page
+                </button></TD>
+                <TD width=50% ><button *ngIf="currentpage != maxpages" nbButton status="info" (click)="goNext(currentpage + 1)" title="Go {{currentpage + 1}}"
+                    nbPopover="Go {{currentpage + 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                    Next Page&nbsp;<nb-icon icon="arrowhead-right"></nb-icon>
+                </button></TD>
+            </thead>
+        </table>
+
+        <TABLE width=100% border={{this.border}} *ngIf="ListeObj != null && ListeObj.results[0] !=null && ListeObj.results[0].objs ==null">
+            <TR *ngIf="currentSearch == '1'"><TD ALIGN=CENTER><H2>Nothing found !!!</H2>
+                <img class="img-responsive" src="assets/images/NOTFOUND.png" Title="Not Found" width=100>
+            </TD></TR>
+            <TR *ngIf="currentSearch == '2'"><TD ALIGN=CENTER><H2>Nothing found !!! Buy It</H2>
+                <img class="img-responsive" src="assets/images/BUYNOW.webp" Title="Not Found" width=100>
+            </TD></TR>
+        </TABLE>
+
+        <TABLE Width=100% border={{this.border}} *ngIf="ListeObj != null && ListeObj.results[0] !=null">
+            <TR *ngFor="let item of ListeObj.results[0].objs; let i = index" class="lineGrey">
+                <TD>{{item.genTypeName}} </TD>
+                <TD>{{item.objtext}}     </TD>
+                <TD>{{item.shopName}}    </TD>
+                <TD>{{item.pricE_EUR}} € </TD>
+                <TD>{{item.ean}}         </TD>
+                <TD  width=95><button nbButton status="info" (click)="goDetail(item.id)" title="Detail {{item.genTypeName}}">
+                    <nb-icon icon="eye-outline"></nb-icon>
+                </button></TD>
+            </TR>  
+        </TABLE>  
+
+        <table width=100% border={{this.border}} *ngIf="ListeObj != null && ListeObj.results[0] !=null && ListeObj.results[0].objs !=null">
+            <thead>
+                <TD width=50% align=right>&nbsp;<button *ngIf="currentpage != 1" nbButton status="info" (click)="goPrev(currentpage - 1)" title="Go {{currentpage - 1}}"
+                    nbPopover="Go {{currentpage - 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="left">
+                    <nb-icon icon="arrowhead-left"></nb-icon>&nbsp;Prev Page
+                </button></TD>
+                <TD width=50% ><button *ngIf="currentpage != maxpages" nbButton status="info" (click)="goNext(currentpage + 1)" title="Go {{currentpage + 1}}"
+                    nbPopover="Go {{currentpage + 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                    Next Page&nbsp;<nb-icon icon="arrowhead-right"></nb-icon>
+                </button></TD>
+            </thead>
+            <thead>
+            <TD colspan=2><p align=center>Page {{currentpage}} of {{maxpages}}</p></TD>
+            
+        </thead>
+        <thead>
+            <TD>
+                <button nbButton status="info" (click)="goBack()"
+                    nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                    <nb-icon icon="corner-down-left"></nb-icon>
+                </button>
+            </TD>
+        </thead>
+        
+    </table>
+</nb-card-body>
+</nb-card>

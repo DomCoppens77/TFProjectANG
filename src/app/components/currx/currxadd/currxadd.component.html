@@ -1,0 +1,48 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+<nb-card>
+    <nb-card-header  class="headerdfooteretail">
+        <TABLE>
+            <thead><TD COLSPAN=2>
+                <h3>
+                    <nb-icon icon="calendar-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon> 
+                    Currencies Exchange Rate Add&nbsp;
+                    <button *ngIf="admin" nbButton  status="success" type="submit" [disabled]="fg.invalid">
+                        <nb-icon icon="save"></nb-icon>
+                    </button>                    
+                </h3></TD> 
+            </thead>
+        </TABLE>        
+    </nb-card-header>    
+
+    <nb-card-body>
+        <TABLE>
+            <TR><TD align=right>Currency From  &nbsp; : &nbsp;</TD><TD>
+                <nb-select placeholder="Select Currency From"  formControlName="currF">
+                    <nb-option *ngFor="let item of LstCurrs.results" value={{item.curr}}>{{item.curr}} - {{item.desc}} </nb-option>
+                  </nb-select>
+            </TD></TR>
+            <TR><TD align=right>Currency To    &nbsp; : &nbsp;</TD><TD>
+                <nb-select placeholder="Select Currency To"  formControlName="currT">
+                    <nb-option *ngFor="let item of LstCurrs.results" value={{item.curr}}>{{item.curr}} - {{item.desc}} </nb-option>
+                  </nb-select>
+            </TD></TR>
+            <TR><TD align=right>Date From      &nbsp; : &nbsp;</TD><TD>
+                <input nbInput placeholder="Enter Date From" [nbDatepicker]="datepicker" formControlName="dateF">
+                <nb-datepicker #datepicker  format="dd/MM/yyyy"></nb-datepicker>
+            </TD></TR>
+            <TR><TD align=right>Date To        &nbsp; : &nbsp;</TD><TD>
+                <input nbInput placeholder="Enter Date To" [nbDatepicker]="datepicker" formControlName="dateT">
+                <nb-datepicker #datepicker  format="dd/MM/yyyy"></nb-datepicker>
+            </TD></TR>
+            <TR><TD align=right>Rate           &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="rate" type='number' min='1'>  </TD></TR>
+        </TABLE>        
+    </nb-card-body>
+
+    <nb-card-footer class="headerdfooteretail">
+        <button nbButton status="info" (click)="back2list()"
+            nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+            <nb-icon icon="corner-down-left"></nb-icon>
+        </button>  
+    </nb-card-footer>    
+</nb-card>
+</form>

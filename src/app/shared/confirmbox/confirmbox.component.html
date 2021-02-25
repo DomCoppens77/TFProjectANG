@@ -1,0 +1,13 @@
+<nb-card accent="danger">
+    <nb-card-header>
+        <!--
+         Etes-vous sur de vouloir supprimer {{name}} ({{count}}) ? 
+-->
+         {{disp_test}}
+        
+    </nb-card-header>
+    <nb-card-body>
+        <button *ngIf="count == 0" nbButton status="success" (click)="yes()">{{disp_yes}}</button> &nbsp;
+        <button nbButton status="danger" (click)="no()">{{disp_no}}</button>
+    </nb-card-body>
+</nb-card>

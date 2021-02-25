@@ -1,1 +1,12 @@
+
 <nb-menu [items]="items"></nb-menu>
+&nbsp;<BR>
+&nbsp;<BR>
+&nbsp;<BR>
+&nbsp;<BR>
+<nb-toggle [(ngModel)]="theme" (checkedChange)="toggle($event)"><nb-icon [icon]="stricon"  [options]="{ animation: { type: 'zoom' } }"></nb-icon> </nb-toggle>
+&nbsp;<BR>
+    &nbsp;<BR>
+    &nbsp;<BR>
+<nb-user *ngIf="AvatarName != ''" [name]=AvatarName [picture]="base64image"></nb-user>
+

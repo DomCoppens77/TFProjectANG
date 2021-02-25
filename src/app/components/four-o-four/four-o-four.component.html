@@ -1,1 +1,10 @@
-<p>four-o-four works!</p>
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-body align=center>
+
+<img class="img-responsive" src="assets/images/lost.png" Title="404 - Lost">
+<p>You should have lost your way</p>
+<p><a [routerLink]="['/home']">Click here for Home Page</a></p>
+<p *ngIf="!login"><a [routerLink]="['/login']">Click here for Login Page</a></p>
+
+</nb-card-body>
+</nb-card>

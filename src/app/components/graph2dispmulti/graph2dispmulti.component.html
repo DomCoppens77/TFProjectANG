@@ -1,0 +1,20 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+  <nb-card-body>
+
+    <!--
+ <div class="button-groups">
+    <button (click)="isLoading=!isLoading" nz-button nzType="default">Toggle Loading</button>
+ </div> -->
+
+  <div echarts [options]="options" [loading]="isLoading" theme="macarons" class="demo-chart"></div>
+  
+  <DIV>
+
+    lines: 
+  <UL>
+    <LI *ngFor="let item of UTYPESIDPS" value={{item}}>{{item}}</LI>
+  </UL>
+</DIV>
+</nb-card-body>
+</nb-card>
+  

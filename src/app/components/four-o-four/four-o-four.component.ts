@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/User.service';
 
 @Component({
   selector: 'app-four-o-four',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FourOFourComponent implements OnInit {
 
-  constructor() { }
+  spinner = true;
+  login = true;
+  constructor(private _service : UserService) { }
 
   ngOnInit(): void {
+    this.spinner = false;
+    this.login = this._service.isConnectedNow;
+
   }
 
 }

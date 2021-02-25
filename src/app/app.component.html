@@ -1,7 +1,14 @@
 <nb-layout>
 
-  <nb-layout-header fixed>
-    <p>TFPorject Angular</p>
+    <nb-layout-header fixed>
+      <nb-layout-column>
+        <p><B>The 'Personnal Hell' of my Wallet</B></p>
+      </nb-layout-column>
+      <nb-layout-column>
+        <nb-user *ngIf="AvatarName != ''" [name]=AvatarName [picture]="base64image"
+        [nbPopover]="popoverstr" nbPopoverTrigger="hover" nbPopoverPlacement="left"
+        ></nb-user>
+      </nb-layout-column>
     </nb-layout-header>
   
     <nb-sidebar>

@@ -1,0 +1,41 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header class="headerdfooteretail">
+        {{model.results[0].band}} &nbsp; - &nbsp; {{model.results[0].title}}
+        &nbsp;
+        <button *ngIf="admin" nbButton status="warning" (click)="update(model.results[0].id)" title="Modify Music">
+            <nb-icon icon="edit-2"></nb-icon>
+        </button>
+        <button *ngIf="admin" nbButton status="danger"  (click)="delete(model.results[0].id,model.results[0].band + ' - ' + model.results[0].title + ' (' + model.results[0].typeStr + ')')" Title="Delete Music">
+            <nb-icon icon="trash-2"></nb-icon>
+        </button>          
+    </nb-card-header>
+    <nb-card-body>
+        <TABLE  width=100%>
+            <TR><TD align=right>Year       &nbsp; : &nbsp;</TD><TD>{{model.results[0].year     }}</TD>
+                <TD *ngIf="discogsM != null && discogsM.results[0] != null" ROWSPAN=18><IMG src={{discogsM.results[0].cover_image}} width=500 height=500></TD>
+            </TR>
+            <TR><TD align=right>Tracks     &nbsp; : &nbsp;</TD><TD>{{model.results[0].tracks   }}</TD></TR>
+            <TR><TD align=right>Nb CDs     &nbsp; : &nbsp;</TD><TD>{{model.results[0].nbCDs    }}</TD></TR>
+            <TR><TD align=right>Nb Dvds    &nbsp; : &nbsp;</TD><TD>{{model.results[0].nbDvds   }}</TD></TR>
+            <TR><TD align=right>Nb Lps     &nbsp; : &nbsp;</TD><TD>{{model.results[0].nbLps    }}</TD></TR>
+            <TR><TD align=right>Type       &nbsp; : &nbsp;</TD><TD>{{model.results[0].typeStr  }}</TD></TR>
+            <TR><TD align=right>Format     &nbsp; : &nbsp;</TD><TD>{{model.results[0].formatStr}}</TD></TR>
+            <TR><TD align=right>Serial Nbr &nbsp; : &nbsp;</TD><TD>{{model.results[0].serialNbr}}</TD></TR>
+            <TR><TD align=right>Ctry       &nbsp; : &nbsp;</TD><TD>{{model.results[0].ctry     }}</TD></TR>
+            <TR><TD align=right>price      &nbsp; : &nbsp;</TD><TD>{{model.results[0].price    }} &nbsp; {{model.results[0].curr     }} </TD></TR>
+            <TR><TD align=right>Shop       &nbsp; : &nbsp;</TD><TD>{{model.results[0].shopName }}</TD></TR>
+            <TR><TD align=right>Date       &nbsp; : &nbsp;</TD><TD>{{model.results[0].date     | date:'dd/MM/yyyy'  }}</TD></TR>
+            <TR><TD align=right>Signed     &nbsp; : &nbsp;</TD><TD>{{model.results[0].signed   }}</TD></TR>
+            <TR><TD align=right>Signed By  &nbsp; : &nbsp;</TD><TD>{{model.results[0].signedBy }}</TD></TR>
+            <TR><TD align=right>EAN        &nbsp; : &nbsp;</TD><TD>{{model.results[0].ean      }}</TD></TR>
+            <TR><TD align=right>Comment1   &nbsp; : &nbsp;</TD><TD>{{model.results[0].comment1 }}</TD></TR>
+            <TR><TD align=right>Comment2   &nbsp; : &nbsp;</TD><TD>{{model.results[0].comment2 }}</TD></TR>
+    </TABLE>        
+    </nb-card-body>
+    <nb-card-footer class="headerdfooteretail">
+        <button nbButton status="info" (click)="back2list()"
+        nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+        <nb-icon icon="corner-down-left"></nb-icon>
+    </button>  
+    </nb-card-footer>
+</nb-card>

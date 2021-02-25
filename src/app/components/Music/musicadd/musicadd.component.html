@@ -1,0 +1,118 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header  class="headerdfooteretail">
+        <H4>
+            <nb-icon icon="music-outline"></nb-icon>Add New  Music
+            <button nbButton status="success"  type="submit" [disabled]="fg.invalid || this.inputFormControl.value == ''">
+                <nb-icon icon="save"></nb-icon>
+            </button>
+        </H4>
+    </nb-card-header>
+<nb-card-body>
+
+
+<TABLE width=100%>
+    <TR><TD align=right>Band (*)      &nbsp; : &nbsp;</TD><TD>
+        <input [formControl]="inputFormControl" nbInput fullWidth type="text" placeholder="Enter Band Name"
+          [nbAutocomplete]="auto" />
+  
+        <nb-autocomplete #auto [handleDisplayFn]="viewHandle">
+            <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+            {{ option }}
+            </nb-option>
+        </nb-autocomplete>
+    </TD></TR>
+    <TR><TD align=right>Title (*)     &nbsp; : &nbsp;</TD><TD><input fullWidth nbInput formControlName="title" minlength="1">    </TD></TR>
+    <TR>
+        <TD align=right>Year       &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="year"  type='number' min='1950' max=9999> </TD>
+        <TD align=right>Tracks     &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="tracks">   </TD>
+    </TR>
+    <!-- <TR>
+    
+    </TR> -->
+    <TR>
+        <TD align=right>CDs  &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="nbCDs"  type='number' min='0' max=999>  </TD>
+        <TD align=right>Dvds &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="nbDvds" type='number' min='0' max=999>  </TD>
+        <TD align=right>Lps  &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="nbLps"  type='number' min='0' max=999>  </TD>
+    </TR>
+<!--     
+    <TR>
+        
+    </TR>
+    <TR>
+        
+    </TR> -->
+    <TR>
+        <TD align=right>Type (*)      &nbsp; : &nbsp;</TD>
+        <TD>
+            <nb-select placeholder="Select Music Type"  formControlName="typeStr">
+            <nb-option *ngFor="let item of LstMType.results" value={{item.id}}>{{item.name}} </nb-option>
+            </nb-select>
+        </TD>
+        <TD align=right>Format (*)     &nbsp; : &nbsp;</TD>
+        <TD>
+            <nb-select placeholder="Select Music Format" formControlName="formatStr">
+            <nb-option *ngFor="let item of LstMFrmt.results" value={{item.id}}>{{item.name}} </nb-option>
+            </nb-select>
+        </TD>
+    </TR>
+
+    
+    <TR><TD align=right>Ctry       &nbsp; : &nbsp;</TD><TD> 
+        <nb-select placeholder="Select Country"  formControlName="ctry">
+            <nb-option *ngFor="let item of LstCtrys.results" value={{item.iso}}>{{item.iso}} - {{item.ctry}} </nb-option>
+          </nb-select>
+    </TD></TR>
+    <TR>
+        <TD align=right>Price (*)     &nbsp; : &nbsp;</TD>
+        <TD><input nbInput formControlName="price" type='number'  min='0'></TD>
+        <TD align=right>Curr (*)       &nbsp; : &nbsp;</TD>
+        <TD>
+            <nb-select placeholder="Select Currency"  formControlName="curr">
+                <nb-option *ngFor="let item of LstCurrs.results" value={{item.curr}}>{{item.curr}} - {{item.desc}} </nb-option>
+            </nb-select>
+        </TD>    
+    </TR>
+    <TR>
+
+    </TR>
+    <TR>
+        <TD align=right>Shop (*)   &nbsp; : &nbsp;</TD><TD>
+        <nb-select placeholder="Select Shop"  formControlName="shopId">
+            <nb-option *ngFor="let item of LstShops.results" value={{item.id}}>{{item.name}} </nb-option>
+          </nb-select>
+        </TD>
+        <TD align=right>Date (*)      &nbsp; : &nbsp;</TD><TD>
+            <input nbInput placeholder="Enter Purchase Date" [nbDatepicker]="datepicker" formControlName="date">
+            <nb-datepicker #datepicker  format="dd/MM/yyyy"></nb-datepicker>
+        </TD>
+    </TR>
+    <TR>
+        <TD align=right>Signed     &nbsp; : &nbsp;</TD>
+        <TD>
+            <nb-toggle status={{this.CKStatus}} checked={{CKsigned}} (checkedChange)="toggle($event)"></nb-toggle>
+        </TD>
+        <TD align=right>SignedBy   &nbsp; : &nbsp;</TD><TD><input fullWidth nbInput formControlName="signedBy"> </TD>
+    </TR>
+    
+    <TR>
+        <TD align=right>SerialNbr  &nbsp; : &nbsp;</TD><TD><input fullWidth nbInput formControlName="serialNbr"></TD>
+        <TD align=right>EAN        &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="ean">      </TD>
+    </TR>
+
+    <TR>
+        <TD align=right>Comment1   &nbsp; : &nbsp;</TD><TD><textarea fullWidth  nbInput formControlName="comment1"></textarea> </TD>
+        <TD align=right>Comment2   &nbsp; : &nbsp;</TD><TD><textarea fullWidth  nbInput formControlName="comment2"></textarea> </TD>
+    </TR>
+</TABLE>
+
+<P align=center>* - required field</P>
+</nb-card-body>
+<nb-card-footer class="headerdfooteretail">
+    <button nbButton status="info" (click)="back2list()"
+        nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+        <nb-icon icon="corner-down-left"></nb-icon>
+    </button>  
+</nb-card-footer>
+</nb-card>
+</form>

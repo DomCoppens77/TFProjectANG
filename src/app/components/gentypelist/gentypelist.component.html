@@ -1,0 +1,96 @@
+<nb-card title="view">
+    <nb-card-body>
+        <h4><nb-icon status="warning" icon="eye-outline"></nb-icon> View Objects</h4>
+        <nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+            <nb-card-body>
+                
+                <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+                    <TABLE>
+                        <TR><TD ALIGN=RIGHT WIDTH=100>Object Type : &nbsp; </TD> 
+                            <TD WIDTH=300 ALIGN=LEFT>
+                                &nbsp;
+                                <nb-select placeholder="Select Object Type" formControlName="GenType" selected="{{selectedItem1}}"> 
+                                    <nb-option *ngFor="let item of listeGenT.results" value="{{item.id}}">{{item.name}}</nb-option>
+                                </nb-select>&nbsp;
+                            </TD>
+                            <TD>
+                                <button nbButton status="info" type="submit" [disabled]="fg.invalid"
+                                    nbPopover="browse selected objects" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                                    Go
+                                </button>
+                        </TD>
+                        </TR>
+                    </TABLE>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </nb-card-body>
+</nb-card>    
+
+<nb-card title="Object">
+    
+    <nb-card-body>
+        <h4><nb-icon status="warning" icon="search-outline"></nb-icon>Objects Search Options</h4>
+        <nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+            <nb-card-body align=center>
+                <form [formGroup]="fg2" (ngSubmit)="searchODesc()">
+                <TABLE>
+                    <TR><TD ALIGN=RIGHT WIDTH=100>Search Desc : &nbsp; </TD> 
+                        <TD WIDTH=300 ALIGN=LEFT>
+                            &nbsp;
+                            <input nbInput formControlName="SearchDesc">
+                            
+                        </TD>
+                        <TD><button nbButton status="info"  type="submit" [disabled]="fg2.invalid">Go</button></TD>
+                    </TR>
+                </TABLE>
+                </form>
+            </nb-card-body>
+        </nb-card>
+
+        <nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+            <nb-card-body align=center>
+                <form [formGroup]="fg3" (ngSubmit)="searchOEAN()">
+                <TABLE>
+                    <TR><TD ALIGN=RIGHT WIDTH=100>Search EAN : &nbsp;</TD> 
+                        <TD WIDTH=300 ALIGN=LEFT>
+                            &nbsp;
+                            <input nbInput formControlName="SearchEAN">
+                            
+                        </TD>
+                        <TD><button nbButton status="info" type="submit" [disabled]="fg3.invalid">Go</button></TD>
+                    </TR>
+                </TABLE>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </nb-card-body>
+</nb-card>
+
+<nb-card title="Music">
+    <nb-card-body>
+        <h4><nb-icon status="warning"  icon="music-outline"></nb-icon> Music Search Option</h4>
+        <nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+            <nb-card-body>
+                <form [formGroup]="fg4" (ngSubmit)="searchOBand()">
+                    <TABLE>
+                        <TR><TD ALIGN=RIGHT WIDTH=100>Search Band : &nbsp; </TD> 
+                            <TD WIDTH=300 ALIGN=LEFT >
+                                <input [formControl]="inputFormControl"
+                                nbInput type="text"
+                                placeholder="Enter Band Name" [nbAutocomplete]="autoControl" />
+                        
+                            <nb-autocomplete #autoControl>
+                                <nb-option *ngFor="let option of filteredControlOptions$ | async" [value]="option">
+                                {{ option }}
+                                </nb-option>
+                            </nb-autocomplete>
+                            </TD>
+                            <TD><button nbButton status="info"  type="submit" [disabled]="this.inputFormControl.value == ''">Go</button></TD>
+                        </TR>
+                    </TABLE>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </nb-card-body>
+</nb-card>            

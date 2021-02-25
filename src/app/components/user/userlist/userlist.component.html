@@ -1,0 +1,82 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header  class="headerdfooteretail">
+        <table>
+            <thead>
+                <TD>
+                    <h3> 
+                        <nb-icon icon="people-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon> 
+                        User(s) List&nbsp;
+                    </h3> 
+                </TD> 
+                <TD *ngIf="admin">
+                    <button nbButton status="warning" (click)="add()" nbPopover="Add New User" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                        <nb-icon icon="plus-circle"></nb-icon>
+                    </button>
+                </TD>
+            </thead>
+        </table>
+    </nb-card-header>
+</nb-card>
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-body>
+        <table>
+
+                <TR><TD colspan="5"><H2>
+                    <nb-icon icon="person-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon>   
+                    Active User(s):</H2></TD></TR>
+                <TR>
+                <TD>Name</TD>
+                <TD>Status</TD>
+                <TD>Email</TD>
+                <TD>Conn. Last</TD>
+                <TD>Conn. Count</TD>
+                </TR>
+            <TR  *ngFor="let item of listeUsers.results; let i = index" class="lineGrey">
+                <TD *ngIf="item.active"  > {{item.firstName}} &nbsp; {{item.lastName}}   </TD>
+                <TD *ngIf="item.active"> {{item.status}}</TD>
+                <TD *ngIf="item.active"> {{item.email}}</TD>
+                <TD *ngIf="item.active"> {{item.connectionLast}}</TD>
+                <TD *ngIf="item.active"> {{item.connectionCount}}</TD>
+                <TD *ngIf="item.active">
+                    <button nbButton *ngIf="admin" status="warning" (click)="update(item.id)" Title="Modify User">
+                        <nb-icon icon="edit-2"></nb-icon>
+                    </button>&nbsp;
+                    <button nbButton *ngIf="admin && item.id != 1" status="danger" (click)="delete(item.id,'User : ' + item.firstName + ' ' + item.lastName )" 
+                    nbPopover="Delete User {{item.firstName}} {{item.lastName}}" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                    <nb-icon icon="trash-2"></nb-icon>
+                    </button> 
+                </TD>
+            </TR>
+        </table>
+    </nb-card-body>
+</nb-card>
+
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-body>
+        <table>
+            <TR><TD colspan="5"><H2>
+                <nb-icon icon="person-delete-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon>   
+                Desactivated User(s):</H2></TD></TR>
+            <TR>
+                <TD>Name</TD>
+                <TD>Status</TD>
+                <TD>Email</TD>
+                <TD>Conn. Last</TD>
+                <TD>Conn. Count</TD>
+                </TR>
+
+            <TR  *ngFor="let item of listeUsers.results; let i = index" class="lineGrey">
+                <TD *ngIf="!item.active"  > {{item.firstName}} &nbsp; {{item.lastName}}</TD>
+                <TD *ngIf="!item.active"> {{item.status}}</TD>
+                <TD *ngIf="!item.active"> {{item.email}}</TD>
+                <TD *ngIf="!item.active"> {{item.connectionLast}}</TD>
+                <TD *ngIf="!item.active"> {{item.connectionCount}}</TD>
+                <TD *ngIf="!item.active">
+                    <button nbButton *ngIf="admin" status="warning" (click)="reactpopup(item.id,'toto')"
+                    nbPopover="Reactivate User {{item.firstName}} {{item.lastName}}" nbPopoverTrigger="hover" nbPopoverPlacement="right"
+                    ><nb-icon icon="person-add"></nb-icon></button>&nbsp;
+                </TD>
+            </TR>  
+        </table>  
+    </nb-card-body>
+</nb-card>

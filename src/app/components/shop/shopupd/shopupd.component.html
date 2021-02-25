@@ -1,0 +1,68 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header class="headerdfooteretail">
+        <table>
+            <thead>
+                <TD COLSPAN=2>
+                    <h3>
+                        <nb-icon icon="compass-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon> 
+                        Shop Update&nbsp;
+                        <button nbButton *ngIf="admin" status="success" type="submit" [disabled]="fg.invalid">
+                            <nb-icon icon="save"></nb-icon>
+                        </button>
+                    </h3>
+                </TD> 
+            </thead>
+        </table>        
+    </nb-card-header>   
+    
+    <nb-card-body>
+    <TABLE width=100% border=0>
+        <TR><TD width=100 ALIGN=RIGHT>Name(*)&nbsp;:&nbsp;</TD> 
+            <TD>
+                <input nbInput fullWidth formControlName="Name" [status]="f.Name.touched ? (f.Name.invalid ? 'danger' : 'success') : 'basic'">     
+                <span class="invalid-feedback" *ngIf="(f.Name.touched || f.Name.dirty) && f.Name.invalid">
+                    Shop Name must be filled
+                </span>
+            </TD>
+        </TR>
+        <TR><TD ALIGN=RIGHT>Address1&nbsp; : &nbsp;</TD> <TD><input fullWidth nbInput formControlName="Address1"> </TD></TR>
+        <TR><TD ALIGN=RIGHT>Address2&nbsp; : &nbsp;</TD> <TD><input fullWidth nbInput formControlName="Address2"> </TD></TR>
+        <TR><TD ALIGN=RIGHT>ZIP     &nbsp; : &nbsp;</TD> <TD><input nbInput formControlName="ZIP">      </TD></TR>
+        <TR><TD ALIGN=RIGHT>City    &nbsp; : &nbsp;</TD> <TD><input nbInput formControlName="City">     </TD></TR>
+        <!-- <TR><TD ALIGN=RIGHT>Country </TD> <TD><input nbInput formControlName="Country">  </TD></TR> -->
+        <TR><TD ALIGN=RIGHT>Country &nbsp; : &nbsp;</TD> 
+            <TD>
+                      <nb-select placeholder="Select Country"  formControlName="Country">
+                        <nb-option *ngFor="let item of LstCtry.results" value={{item.iso}}>{{item.iso}} - {{item.ctry}} </nb-option>
+                      </nb-select>
+            </TD>
+        </TR>
+        <TR><TD ALIGN=RIGHT>Phone   &nbsp; : &nbsp; </TD> <TD><input nbInput formControlName="Phone">    </TD></TR>
+        <TR><TD ALIGN=RIGHT>Email   &nbsp; : &nbsp; </TD> <TD><input fullWidth nbInput formControlName="Email">    </TD></TR>
+        <TR><TD ALIGN=RIGHT>WebSite &nbsp; : &nbsp; </TD> <TD><input fullWidth nbInput formControlName="WebSite">  </TD></TR>
+        <TR><TD ALIGN=RIGHT>Local.  &nbsp; : &nbsp; </TD> <TD><input fullWidth nbInput formControlName="Local">   </TD></TR>
+        <TR><TD ALIGN=RIGHT>Closed  &nbsp; : &nbsp; </TD> 
+        <TD>&nbsp;
+            <nb-toggle status={{this.CKStatus}} checked={{CKclosed}} (checkedChange)="toggle($event)"></nb-toggle>
+            <!--
+            <nb-checkbox status={{this.CKStatus}} (checkedChange)="toggle($event)"></nb-checkbox>
+            -->
+           </TD>
+        </TR>
+    </TABLE>
+    <TABLE>
+        <TR>
+            <TD><div ></div></TD>
+        </TR>
+    </TABLE>
+
+    </nb-card-body>
+    <nb-card-footer class="headerdfooteretail">
+        <button nbButton status="info" (click)="back2list()"
+            nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+            <nb-icon icon="corner-down-left"></nb-icon>
+        </button>  
+    </nb-card-footer>
+</nb-card>
+</form>

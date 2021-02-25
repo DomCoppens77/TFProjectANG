@@ -1,0 +1,34 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header class="headerdfooteretail">
+        <table>
+            <thead>
+                <TD COLSPAN=2>
+                    <h3>
+                        <nb-icon icon="headphones-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon> 
+                        Music Types List&nbsp;
+                    </h3>
+                </TD> 
+                <TD>
+                    <button *ngIf="admin" nbButton status="warning" (click)="add()" nbPopover="Add New Music Type" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                        <nb-icon icon="plus-circle"></nb-icon>
+                    </button>
+                </TD>
+            </thead>
+        </table>        
+    </nb-card-header>   
+    <nb-card-body>
+        <TABLE width=100%>
+            <TR  *ngFor="let item of listeMT.results; let i = index" class="lineGrey">
+                <TD align=center><B>{{item.name}}</B></TD>
+                <TD width=100>
+                    <button nbButton *ngIf="admin" status="warning" (click)="update(item.id)" Title="Modify Music Type">
+                        <nb-icon icon="edit-2"></nb-icon>
+                    </button>&nbsp;
+                    <button nbButton *ngIf="admin" status="danger" (click)="delete(item.id,'Music Type : ' + item.name )" Title="Delete Music Type">
+                        <nb-icon icon="trash-2"></nb-icon>
+                    </button> 
+                </TD>       
+            </TR>  
+        </TABLE>  
+    </nb-card-body>
+</nb-card>

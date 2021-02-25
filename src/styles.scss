@@ -4,5 +4,31 @@
 
 @include nb-install() {
   @include nb-theme-global();
+
+  .lineGrey:nth-child(odd) {
+    background-color: nb-theme(background-basic-color-3);
+    color: nb-theme(background-alternative-color-3);
+  }
+  
+  .lineGrey:hover
+  {
+   background-color:nb-theme(background-basic-color-4);
+   color: nb-theme(background-alternative-color-4);
+  }
+  
+  .lineGrey td { padding: 5px; }
+  .lineGrey td:last-child { background: nb-theme(background-basic-color-1); }
+
+  .headerdfooteretail
+  {
+   background-color:nb-theme(background-basic-color-2);
+  }
+
+  textarea {
+    resize: none;
+ }
+ 
 };
 /* You can add global styles to this file, and also import other style files */
+
+

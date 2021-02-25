@@ -19,5 +19,11 @@ export class Shop
     webSite         : string;  
     localisationURL : string;  
     closed          : boolean; 
-
  }
+
+ export class APISHOPCNT{
+    statusCode : number;
+    message : string;
+    results : number;
+    resultCount : number;
+    }

@@ -1,0 +1,61 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+
+    <nb-card-header class="headerdfooteretail">
+        <table>
+            <thead>
+                <TD COLSPAN=2>
+                    <h3>
+                        <nb-icon icon="person-outline" status="warning" [options]="{ animation: { type: 'zoom' } }"></nb-icon> 
+                        User Add&nbsp;
+                        <button nbButton *ngIf="admin" status="success" type="submit" [disabled]="fg.invalid"
+                        nbPopover="Add User" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                            <nb-icon icon="save"></nb-icon>
+                        </button>
+                    </h3>
+                </TD> 
+            </thead>
+        </table>        
+    </nb-card-header>   
+
+    <nb-card-body>
+
+            <TABLE>
+                <TR><TD ALIGN=RIGHT>Firstname             &nbsp; :&nbsp; </TD> <TD>
+                    <input type="text" nbInput formControlName="fname" [status]=" f.fname.touched ? (f.fname.invalid ? 'danger' : 'success') : 'basic'" required> </TD></TR>
+                <TR><TD ALIGN=RIGHT>Lastname              &nbsp; :&nbsp; </TD> <TD>
+                    <input type="text" nbInput formControlName="lname" [status]="f.lname.touched ? (f.lname.invalid ? 'danger' : 'success') : 'basic'" required> </TD></TR>
+                <TR><TD ALIGN=RIGHT>Email                 &nbsp; :&nbsp; </TD> <TD>
+                    
+                    <!-- <input [class.is-invalid]="fg.get('email').invalid && fg.get('email').touched" type="email" nbInput formControlName="email" > -->
+
+                    <input type="email" nbInput formControlName="email" [status]="f.email.touched ? (f.email.invalid ? 'danger' : 'success') : 'basic'" required email>
+                    <span class="invalid-feedback" *ngIf="(f.email.touched || f.email.dirty) && f.email.invalid">
+                        Correct Email is required
+                    </span>
+
+                </TD></TR>
+                <TR><TD ALIGN=RIGHT>Passwd                &nbsp; :&nbsp; </TD> <TD><input nbInput formControlName="passwd"  type="password" minlength="6" maxlength="20" [status]="f.passwd.touched ? (f.passwd.invalid ? 'danger' : 'success') : 'basic'"  nbPopover="Password empty" nbPopoverTrigger="noop" required></TD></TR>
+                <TR><TD ALIGN=RIGHT>Confirm Passwd        &nbsp; :&nbsp; </TD> <TD><input nbInput formControlName="passwd2" type="password" minlength="6" maxlength="20" [status]="f.passwd2.touched ? (f.passwd2.value == '' || f.passwd2.value != f.passwd.value ? 'danger' : 'success') : 'basic'"  required>
+                    <span class="invalid-feedback" *ngIf="(f.passwd2.touched || f.passwd2.dirty) && f.passwd2.invalid">
+                        Password must match Confirm Password and Minimum 6 char and 20 Max
+                    </span>
+                </TD></TR>
+
+                <TR><TD ALIGN=RIGHT>Secret Answer         &nbsp; :&nbsp; </TD> <TD><input nbInput formControlName="secretans"  type="password" minlength="6" [status]="f.secretans.touched ? (f.secretans.invalid ? 'danger' : 'success') : 'basic'"  required></TD></TR>
+                <TR><TD ALIGN=RIGHT>Confirm Secret Answer &nbsp; :&nbsp; </TD> <TD><input nbInput formControlName="secretans2" type="password" minlength="6" [status]="f.secretans2.touched ? (f.secretans2.value == '' || f.secretans2.value != f.secretans.value ? 'danger' : 'success') : 'basic'"  required>
+                    <span class="invalid-feedback" *ngIf="(f.secretans2.touched || f.secretans2.dirty) && f.secretans2.invalid">
+                        Secret Answer (To change forgotten password) must match Confirm Answer : Min 6 char
+                    </span>
+                </TD></TR>
+
+            </TABLE>
+    </nb-card-body>
+    <nb-card-footer class="headerdfooteretail">
+        <button nbButton status="info" (click)="back2list()"
+            nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+            <nb-icon icon="corner-down-left"></nb-icon>
+        </button>  
+    </nb-card-footer>    
+</nb-card>
+</form>

@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  APIURL : "http://localhost:59006/api/",
-  APITOKEN : ""
+  APIURL : "http://localhost:59006/api",
+  DISCOGSTOKEN : "tJRACJAVbSHuuLpVwpUbupgXosKSWmVflmVnbpbE",
+  ENV_USERLOG : "",
 };
 
 /*

@@ -1,0 +1,75 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-body>
+    
+    <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+    <TABLE>
+        <TR><TD align=right>Band*      &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="band">     </TD></TR>
+        <TR><TD align=right>Title*     &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="title">    </TD></TR>
+        <TR><TD align=right>Year       &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="year">     </TD></TR>
+        <TR><TD align=right>Tracks     &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="tracks">   </TD></TR>
+        <TR><TD align=right>NbCDs      &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="nbCDs">    </TD></TR>
+        <TR><TD align=right>NbDvds     &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="nbDvds">   </TD></TR>
+        <TR><TD align=right>NbLps      &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="nbLps">    </TD></TR>
+        <TR><TD align=right>Type*      &nbsp; : &nbsp;</TD><TD>
+            <nb-select placeholder="Select Music Type"  formControlName="typeStr">
+              <nb-option *ngFor="let item of LstMType.results" value={{item.id}}>{{item.name}} </nb-option>
+            </nb-select>
+        </TD>
+        </TR>
+        <TR><TD align=right>Format*     &nbsp; : &nbsp;</TD>
+            <TD>  
+                <nb-select placeholder="Select Music Format" formControlName="formatStr">
+                  <nb-option *ngFor="let item of LstMFrmt.results" value={{item.id}}>{{item.name}} </nb-option>
+                </nb-select>
+            </TD>
+        </TR>
+        <TR><TD align=right>SerialNbr  &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="serialNbr"></TD></TR>
+        <TR><TD align=right>Ctry       &nbsp; : &nbsp;</TD><TD> 
+            <nb-select placeholder="Select Country"  formControlName="ctry">
+                <nb-option *ngFor="let item of LstCtrys.results" value={{item.iso}}>{{item.iso}} - {{item.ctry}} </nb-option>
+              </nb-select>
+        </TD></TR>
+        <TR><TD align=right>Price      &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="price">    </TD></TR>
+        <TR><TD align=right>Curr       &nbsp; : &nbsp;</TD><TD>
+            <nb-select placeholder="Select Currency"  formControlName="curr">
+                <nb-option *ngFor="let item of LstCurrs.results" value={{item.curr}}>{{item.curr}} - {{item.desc}} </nb-option>
+              </nb-select>
+        </TD></TR>
+        <TR><TD align=right>Shop*   &nbsp; : &nbsp;</TD><TD>
+            <nb-select placeholder="Select Shop"  formControlName="shopId">
+                <nb-option *ngFor="let item of LstShops.results" value={{item.id}}>{{item.name}} </nb-option>
+              </nb-select>
+        </TD></TR>
+        <TR><TD align=right>Date*      &nbsp; : &nbsp;</TD><TD> <input nbInput formControlName="date2"> 
+            <input nbInput placeholder="Enter Purchase Date" [nbDatepicker]="datepicker" formControlName="date">
+            <nb-datepicker #datepicker format="dd/MM/yyyy"></nb-datepicker>
+        </TD></TR>
+        <TR><TD align=right>Signed     &nbsp; : &nbsp;</TD><TD>
+            <nb-toggle status={{this.CKStatus}} checked={{CKsigned}} (checkedChange)="toggle($event)"></nb-toggle>
+        </TD></TR>
+        <TR><TD align=right>SignedBy   &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="signedBy"> </TD></TR>
+        <TR><TD align=right>EAN        &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="ean">      </TD></TR>
+        <TR><TD align=right>Comment1   &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="comment1"> </TD></TR>
+        <TR><TD align=right>Comment2   &nbsp; : &nbsp;</TD><TD><input nbInput formControlName="comment2"> </TD></TR>
+    </TABLE>
+    <TABLE>
+        <TR>
+            <TD>
+                <div *ngIf="admin">
+                    <button nbButton status="success" type="submit" [disabled]="fg.invalid">
+                        <nb-icon icon="save"></nb-icon>
+                    </button>
+                </div>
+            </TD>
+        </TR>
+    </TABLE>
+    </form>
+    
+    </nb-card-body>
+    <nb-card-footer class="headerdfooteretail">
+        <button nbButton status="info" (click)="back2list()"
+            nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+            <nb-icon icon="corner-down-left"></nb-icon>
+        </button>  
+    </nb-card-footer>
+    </nb-card>

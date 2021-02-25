@@ -1,0 +1,103 @@
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="basic">
+    <nb-card-header  class="headerdfooteretail">
+  
+  
+<table width=100% border={{this.border}}>
+    <thead>
+        <TD>
+            <button nbButton status="info" (click)="goBack()"
+                nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                <nb-icon icon="corner-down-left"></nb-icon>
+            </button>
+        </TD>
+    </thead>
+    <thead>
+        <TD>
+            <h3>
+                <nb-icon icon="music-outline"></nb-icon> Music(s) List
+                <button *ngIf="admin" nbButton status="warning" (click)="add(currpage)" nbPopover="Add New Music" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                    <nb-icon icon="plus-circle"></nb-icon>
+                </button>
+            </h3>
+        </TD> 
+       
+        <TD ></TD>
+        <TD align=right>
+            <form [formGroup]="fg" (ngSubmit)="go2page()">
+                <input nbInput formControlName="page"  type='number' min='1' max={{maxpages}} [(value)]="currpage">
+                <button nbButton status="info" type="submit" [disabled]="fg.invalid">Go</button>
+            </form>
+        </TD>
+    </thead>
+</table>
+</nb-card-header>
+<nb-card-body>
+<table width=100% border={{this.border}}>
+    <thead>
+        <TD colspan=2><p align=center>Page {{currpage}} of {{maxpages}}</p></TD>
+    </thead>
+    <thead>
+        <TD width=50% align=right>&nbsp;<button *ngIf="currpage != 1" nbButton status="info" (click)="goPrev(currpage - 1)" title="Go {{currpage - 1}}"
+            nbPopover="Go {{currpage - 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="left">
+            <nb-icon icon="arrowhead-left"></nb-icon>&nbsp;Prev Page
+        </button></TD>
+        <TD width=50% ><button *ngIf="currpage != maxpages" nbButton status="info" (click)="goNext(currpage + 1)" title="Go {{currpage + 1}}"
+            nbPopover="Go {{currpage + 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+            Next Page&nbsp;<nb-icon icon="arrowhead-right"></nb-icon>
+        </button></TD>
+    </thead>
+</table>
+
+<TABLE Width=100% border={{this.border}} *ngIf="listeMusic.results[0] != null">
+    <TR *ngFor="let item of listeMusic.results[0].musics; let i = index" class="lineGrey">
+        <TD>{{item.band}}</TD>
+        <TD>{{item.title}}</TD>    
+        <TD>{{item.typeStr}}</TD>
+        <TD>{{item.formatStr}}</TD>
+
+        <TD width=160>
+            <button nbButton status="info" (click)="goDetail(item.id,currpage)" title="Music Detail">
+                <nb-icon icon="eye-outline"></nb-icon>
+            </button> &nbsp;
+            <button *ngIf="admin" nbButton status="warning" (click)="update(item.id)" title="Modify Music">
+                <nb-icon icon="edit-2"></nb-icon>
+            </button> &nbsp;
+            <button *ngIf="admin" nbButton status="danger"  (click)="delete(item.id,item.band + ' - ' + item.title + ' (' + item.typeStr + ')')" Title="Delete Music">
+                <nb-icon icon="trash-2"></nb-icon>
+            </button>   
+        </TD> 
+    </TR>  
+</TABLE>              
+
+<table width=100% border={{this.border}}>
+    <thead>
+        <TD width=50% align=right>&nbsp;<button *ngIf="currpage != 1" nbButton status="info" (click)="goPrev(currpage - 1)" title="Go {{currpage - 1}}"
+            nbPopover="Go {{currpage - 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="left">
+            <nb-icon icon="arrowhead-left"></nb-icon>&nbsp;Prev Page
+        </button></TD>
+        <TD width=50% ><button *ngIf="currpage != maxpages" nbButton status="info" (click)="goNext(currpage + 1)" title="Go {{currpage + 1}}"
+            nbPopover="Go {{currpage + 1}}" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+            Next Page&nbsp;<nb-icon icon="arrowhead-right"></nb-icon>
+        </button></TD>
+    </thead>
+    <thead>
+        <TD colspan=2><p align=center>Page {{currpage}} of {{maxpages}}</p></TD>
+    </thead>
+</table>
+</nb-card-body>
+<nb-card-footer class="headerdfooteretail">
+    <table width=100% border={{this.border}}>
+    <thead>
+        <TD>
+            <button nbButton status="info" (click)="goBack()"
+            nbPopover="Go Back" nbPopoverTrigger="hover" nbPopoverPlacement="right">
+                <nb-icon icon="corner-down-left"></nb-icon>
+            </button>
+        </TD>
+    </thead>    
+    </table>
+</nb-card-footer>
+
+</nb-card>
+
+  
